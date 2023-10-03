@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MhsContoller;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +17,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+// front end mahasiswa
+
+Route::get('mahasiswa',[MhsContoller::class,'index']);
+Route::post('mahasiswa',[MhsContoller::class,'store']);
+Route::get('mahasiswa/{id}',[MhsContoller::class,'edit']);
+Route::put('mahasiswa/{id}',[MhsContoller::class,'update']);
+Route::delete('mahasiswa/{id}',[MhsContoller::class,'destroy'])->name('mahasiswa.destroy');

@@ -17,7 +17,7 @@ class MahasiswaController extends Controller
     public function index()
     {
         try {
-            $data = Mahasiswa::orderBy('nama', 'asc')->get();
+            $data = Mahasiswa::orderBy('nama', 'asc')->paginate(10);
             
             if ($data === null ) {
                 return response()->json([
@@ -62,7 +62,7 @@ class MahasiswaController extends Controller
                     'status' => false,
                     'message' => 'Semua input harus diisi',
                     'data' => $validator->errors()
-                ],400);
+                ]);
             }
     
             $dataMhs = new Mahasiswa;
@@ -148,7 +148,7 @@ class MahasiswaController extends Controller
             if($validator->fails()) {
                 return response()->json([
                     'status' => false,
-                    'message' => 'Semua input harus diisi',
+                    'message' => 'gagal Memasukkan data',
                     'data' => $validator->errors()
                 ],400);
             }
